@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miyu Kondo | Strategic Profile Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+
+        body {
+            font-family: 'Outfit', 'Noto Sans JP', sans-serif;
+            background-color: #F0F4F8; /* Light Grey-Blue Background */
+            color: #1E293B;
+        }
+
+        /* Chart Container Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-interactive {
+            transition: all 0.2s ease;
+        }
+        .btn-interactive:active {
+            transform: scale(0.95);
+        }
+
+        /* Vibrant Palette Utility Classes */
+        .text-accent { color: #F59E0B; } /* Energetic Orange */
+        .bg-accent { background-color: #F59E0B; }
+        .text-primary { color: #2563EB; } /* Brilliant Blue */
+        .bg-primary { background-color: #2563EB; }
+        .border-primary { border-color: #2563EB; }
+    </style>
+    <!-- Chosen Palette: Vibrant Tech (Brilliant Blue & Energetic Orange) -->
+    <!-- Application Structure Plan: Dashboard layout focusing on 'System Analysis'. 
+         1. Header: High-level KPI summary. 
+         2. Grid Layout: Left col for quantitative charts (Radar/Donut), Right col for qualitative context (Text/Lists).
+         3. Dynamic Interaction: Clicking charts updates the 'Analysis Console' on the right.
+         Rationale: This structure allows interviewers to quickly grasp the 'Specs' (Charts) and then dive into 'Why' (Text) on demand. -->
+    <!-- Visualization & Content Choices: 
+         1. Radar Chart -> Goal: Compare -> Shows balance of 'Logic' vs 'Soft Skills'. -> Interaction: Click point to show detail. -> Justification: Best for multi-axial skill assessment.
+         2. Doughnut Chart -> Goal: Inform -> Shows composition of 'Motivation Sources'. -> Interaction: Hover for values. -> Justification: Simple part-to-whole relationship.
+         3. Process Flow (HTML) -> Goal: Change -> Visualizes history/evolution. -> Interaction: Step-through buttons. -> Justification: Linear narrative best served by structured HTML.
+         CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="antialiased">
+
+    <!-- Main Container -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Header Section -->
+        <header class="mb-10 text-center md:text-left">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div>
+                    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900">
+                        SYSTEM ANALYSIS: <span class="text-primary">MIYU KONDO</span>
+                    </h1>
+                    <p class="mt-2 text-xl text-slate-600 font-medium">
+                        The Architect of Predictability <span class="text-accent">///</span> 2026 Portfolio
+                    </p>
+                </div>
+                <div class="mt-4 md:mt-0 flex gap-4">
+                    <div class="bg-white px-6 py-3 rounded-xl shadow-sm border-l-4 border-primary">
+                        <div class="text-xs text-slate-500 uppercase font-bold tracking-wider">Logic Score</div>
+                        <div class="text-2xl font-bold text-primary">Top 5%</div>
+                    </div>
+                    <div class="bg-white px-6 py-3 rounded-xl shadow-sm border-l-4 border-accent">
+                        <div class="text-xs text-slate-500 uppercase font-bold tracking-wider">Ownership</div>
+                        <div class="text-2xl font-bold text-accent">Extreme</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Intro Text -->
+        <div class="mb-8 bg-white p-6 rounded-xl shadow-sm">
+            <h2 class="text-xl font-bold text-slate-800 mb-2">Executive Summary</h2>
+            <p class="text-slate-600 leading-relaxed">
+                This interactive report visualizes the core competencies, historical evolution, and strategic value of candidate Miyu Kondo. 
+                Data points are derived from deep self-analysis regarding "Logic", "Structure", and "Resilience". 
+                Explore the sections below to understand how this candidate converts chaos into predictable infrastructure.
+            </p>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Left Column: Visualizations (Charts) -->
+            <div class="lg:col-span-7 space-y-8">
+                
+                <!-- Chart 1: Competency Radar -->
+                <div class="card p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-slate-800">Core Competencies</h3>
+                        <span class="bg-blue-100 text-primary text-xs font-bold px-2 py-1 rounded uppercase">Quantitative</span>
+                    </div>
+                    <p class="text-sm text-slate-500 mb-4">Relative strength assessment based on market value (Top tier benchmarks).</p>
+                    <div class="chart-container">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                    <div class="mt-4 flex flex-wrap gap-2 justify-center">
+                        <button onclick="updateAnalysis('logic')" class="btn-interactive px-3 py-1 bg-slate-100 hover:bg-slate-200 rounded text-sm font-medium">Logic Analysis</button>
+                        <button onclick="updateAnalysis('ownership')" class="btn-interactive px-3 py-1 bg-slate-100 hover:bg-slate-200 rounded text-sm font-medium">Ownership Analysis</button>
+                    </div>
+                </div>
+
+                <!-- Chart 2: Motivation Source (Doughnut) -->
+                <div class="card p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-slate-800">Motivation Drivers</h3>
+                        <span class="bg-amber-100 text-accent text-xs font-bold px-2 py-1 rounded uppercase">Composition</span>
+                    </div>
+                    <div class="flex flex-col md:flex-row items-center gap-8">
+                        <div class="chart-container" style="max-width: 300px; height: 300px;">
+                            <canvas id="donutChart"></canvas>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-lg mb-2">Driver Breakdown:</h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <span class="w-3 h-3 rounded-full bg-primary mt-1.5 mr-2"></span>
+                                    <span class="text-sm text-slate-600"><strong>Logical Consistency (45%):</strong> The need for systems to make sense. Validated by successful code execution.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-3 h-3 rounded-full bg-accent mt-1.5 mr-2"></span>
+                                    <span class="text-sm text-slate-600"><strong>Responsibility (35%):</strong> The drive to "own" the failure and recovery process personally.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-3 h-3 rounded-full bg-slate-400 mt-1.5 mr-2"></span>
+                                    <span class="text-sm text-slate-600"><strong>Social Contribution (20%):</strong> Result of the above. Creating relief for others.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Column: Context & Deep Dive (Text/Interactive Lists) -->
+            <div class="lg:col-span-5 space-y-8">
+                
+                <!-- Dynamic Analysis Console -->
+                <div class="card p-6 border-2 border-primary bg-blue-50/50">
+                    <h3 class="text-lg font-bold text-primary mb-3 flex items-center">
+                        <span class="text-2xl mr-2">◈</span> Insight Console
+                    </h3>
+                    <div id="insight-display" class="prose prose-sm text-slate-700">
+                        <p class="font-medium">Select a data point on the left or use the buttons to load detailed analysis.</p>
+                        <p class="mt-2 text-slate-500">Currently viewing: <span class="font-bold">Summary</span></p>
+                        <hr class="border-blue-200 my-3">
+                        <p>Miyu Kondo is a candidate characterized by high "Structural Cognition". He does not just solve problems; he rebuilds the environment so the problem cannot recur. His "coldness" is actually a high-efficiency defense mechanism turned into a professional asset.</p>
+                    </div>
+                </div>
+
+                <!-- History / Evolution Timeline -->
+                <div class="card p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-slate-800">Version History</h3>
+                        <span class="bg-slate-100 text-slate-600 text-xs font-bold px-2 py-1 rounded uppercase">Evolution</span>
+                    </div>
+                    
+                    <div class="space-y-0 relative">
+                        <!-- Vertical Line -->
+                        <div class="absolute left-4 top-2 bottom-2 w-0.5 bg-slate-200"></div>
+
+                        <!-- Item 1 -->
+                        <div class="relative pl-10 pb-6">
+                            <div class="absolute left-2 top-1 w-4 h-4 rounded-full bg-slate-300 border-2 border-white"></div>
+                            <h4 class="font-bold text-slate-700">v1.0: The Actor (Childhood)</h4>
+                            <p class="text-xs text-slate-500 mb-1">Function: Defense & Simulation</p>
+                            <p class="text-sm text-slate-600">Developed high-sensitivity radar for others' expectations to avoid unreasonable criticism. <span class="text-accent font-bold">Key Gain: Meta-cognition.</span></p>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="relative pl-10 pb-6">
+                            <div class="absolute left-2 top-1 w-4 h-4 rounded-full bg-accent border-2 border-white"></div>
+                            <h4 class="font-bold text-slate-700">v2.0: The Pioneer (Univ.)</h4>
+                            <p class="text-xs text-slate-500 mb-1">Function: Exploring Chaos</p>
+                            <p class="text-sm text-slate-600">Encountered "Unpredictable Failure" (The Bear Incident). Realized individual grit is insufficient. <span class="text-accent font-bold">Key Gain: Desire for Structure.</span></p>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="relative pl-10">
+                            <div class="absolute left-2 top-1 w-4 h-4 rounded-full bg-primary border-2 border-white"></div>
+                            <h4 class="font-bold text-primary">v3.0: The Architect (Current)</h4>
+                            <p class="text-xs text-slate-500 mb-1">Function: Physical x Digital Hack</p>
+                            <p class="text-sm text-slate-600">Combines physical constraints (CAD/Hardware) with digital logic (API). Seeks to build "Predictable Infrastructure".</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Target Domain List -->
+                <div class="card p-6">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Target Domains</h3>
+                    <div class="space-y-3">
+                        <div class="group cursor-pointer" onclick="updateAnalysis('logistics')">
+                            <div class="flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-blue-50 border border-slate-100 transition-colors">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded bg-primary text-white flex items-center justify-center font-bold">L</div>
+                                    <div>
+                                        <div class="font-bold text-slate-800">Logistics (Hacobu)</div>
+                                        <div class="text-xs text-slate-500">High Physical Constraint</div>
+                                    </div>
+                                </div>
+                                <div class="text-primary font-bold">SS</div>
+                            </div>
+                        </div>
+                        <div class="group cursor-pointer" onclick="updateAnalysis('finance')">
+                            <div class="flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-indigo-50 border border-slate-100 transition-colors">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded bg-indigo-600 text-white flex items-center justify-center font-bold">F</div>
+                                    <div>
+                                        <div class="font-bold text-slate-800">Fintech (Infcurion)</div>
+                                        <div class="text-xs text-slate-500">High Logical Rigor</div>
+                                    </div>
+                                </div>
+                                <div class="text-indigo-600 font-bold">S+</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-12 text-center border-t border-slate-200 pt-8">
+            <p class="text-slate-500 text-sm">Generated for 2026 Graduate Recruitment Analysis</p>
+            <p class="text-slate-400 text-xs mt-1">Data Source: Self-Analysis Final Ver. / No SVG Graphics Used</p>
+        </footer>
+
+    </div>
+
+    <!-- Logic Script -->
+    <script>
+        // --- Data Source ---
+        const insightData = {
+            logic: {
+                title: "Logical Anxiousness (Logic)",
+                content: "Scores 90%. Miyu feels 'safe' only when logic holds. This is not coldness, but a professional necessity. He finds joy when code or physical mechanisms (gears) mesh perfectly as predicted. This drives his high-quality output."
+            },
+            ownership: {
+                title: "Chaos Governance (Ownership)",
+                content: "Scores 95%. His dislike for 'being scolded for others' mistakes' evolved into a powerful strength: 'I will control the entire system so no mistakes happen.' He takes full responsibility for the architecture."
+            },
+            logistics: {
+                title: "Target: Logistics DX",
+                content: "The ultimate playground for Miyu. Logistics combines 'Physical Constraints' (Trucks, Warehouses) with 'Digital Chaos'. His experience with Aluminum frames and APIs makes him uniquely qualified to translate physical pain points into code."
+            },
+            finance: {
+                title: "Target: Fintech",
+                content: "A domain requiring 100% accuracy. Miyu's perfectionism and fear of 'unpredictable failure' are assets here. He seeks the comfort of a system where 1+1 always equals 2."
+            }
+        };
+
+        // --- Chart 1: Radar Chart ---
+        const ctxRadar = document.getElementById('radarChart').getContext('2d');
+        
+        // Handling long labels for Radar Chart (splitting strings)
+        const radarLabels = [
+            ['Logical', 'Thinking'], 
+            ['Structuring', 'Ability'], 
+            ['Resilience', '(Recovery)'], 
+            ['Tech', 'Implementation'], 
+            ['Ownership', '(Responsibility)'], 
+            ['Verbalizing', 'Emotion']
+        ];
+
+        const radarChart = new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: radarLabels,
+                datasets: [{
+                    label: 'Capability Score',
+                    data: [90, 95, 90, 75, 95, 50],
+                    backgroundColor: 'rgba(37, 99, 235, 0.2)', // Primary Blue transparent
+                    borderColor: '#2563EB',
+                    pointBackgroundColor: '#2563EB',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#2563EB'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(0,0,0,0.1)' },
+                        grid: { color: 'rgba(0,0,0,0.05)' },
+                        pointLabels: {
+                            font: { size: 11, family: 'Outfit', weight: '600' },
+                            color: '#64748B'
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            title: function(context) {
+                                // Join array labels for tooltip title
+                                const label = context[0].label;
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            }
+                        }
+                    }
+                },
+                onClick: (e, activeEls) => {
+                    if (activeEls.length > 0) {
+                        const index = activeEls[0].index;
+                        // Map index to insight keys (simple logic for demo)
+                        if (index === 0) updateAnalysis('logic');
+                        if (index === 4) updateAnalysis('ownership');
+                        // Add more mappings as needed
+                    }
+                }
+            }
+        });
+
+        // --- Chart 2: Doughnut Chart ---
+        const ctxDonut = document.getElementById('donutChart').getContext('2d');
+        const donutChart = new Chart(ctxDonut, {
+            type: 'doughnut',
+            data: {
+                labels: ['Logic', 'Responsibility', 'Social Impact'],
+                datasets: [{
+                    data: [45, 35, 20],
+                    backgroundColor: [
+                        '#2563EB', // Primary
+                        '#F59E0B', // Accent
+                        '#94A3B8'  // Slate
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+
+        // --- Interaction Logic ---
+        function updateAnalysis(key) {
+            const display = document.getElementById('insight-display');
+            const data = insightData[key];
+            
+            if (data) {
+                // Fade out effect
+                display.style.opacity = '0';
+                
+                setTimeout(() => {
+                    display.innerHTML = `
+                        <h4 class="text-xl font-bold text-slate-800 mb-2">${data.title}</h4>
+                        <p class="text-base leading-relaxed">${data.content}</p>
+                        <div class="mt-3 text-xs text-slate-400 uppercase font-bold tracking-widest">Analysis Loaded</div>
+                    `;
+                    // Fade in
+                    display.style.opacity = '1';
+                    display.style.transition = 'opacity 0.3s ease';
+                }, 200);
+            }
+        }
+
+    </script>
+</body>
+</html>

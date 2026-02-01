@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Profile | Miyu Kondo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+
+        :root {
+            --brand-blue: #2563EB;
+            --brand-slate: #1E293B;
+            --accent-orange: #F59E0B;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #F1F5F9;
+            color: var(--brand-slate);
+            line-height: 1.6;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--brand-blue), #6366F1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .process-dot {
+            position: relative;
+        }
+
+        .process-dot::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -2rem;
+            width: 2px;
+            height: 2rem;
+            background: #E2E8F0;
+        }
+
+        .process-dot:last-child::after {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .process-dot::after {
+                left: auto;
+                right: -2rem;
+                top: 50%;
+                bottom: auto;
+                width: 2rem;
+                height: 2px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- ヘッダー：プロフェッショナルな第一印象 -->
+        <header class="mb-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <span class="h-px w-8 bg-blue-600"></span>
+                    <span class="text-sm font-bold tracking-[0.2em] text-blue-600 uppercase">Executive Summary</span>
+                </div>
+                <h1 class="text-6xl font-black text-slate-900 tracking-tight">
+                    近藤 未結 <span class="text-2xl font-light text-slate-400 ml-2">MIYU KONDO</span>
+                </h1>
+                <p class="text-2xl text-slate-500 font-medium max-w-2xl leading-relaxed">
+                    「なぜ」を解体し、仕組みで解決する。<br>
+                    自己完結型レジリエンスを備えた構造的実務家。
+                </p>
+            </div>
+            
+            <div class="flex flex-wrap gap-4">
+                <div class="bg-white px-5 py-3 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">コア・バリュー</div>
+                    <div class="text-lg font-bold text-blue-600 italic">"Why" Driven Action</div>
+                </div>
+                <div class="bg-white px-5 py-3 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">思考の流儀</div>
+                    <div class="text-lg font-bold text-slate-800 italic">Self-Repairing Logic</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- サイド：客観的指標 -->
+            <div class="lg:col-span-4 space-y-8">
+                <!-- スキルレーダー -->
+                <div class="glass-card p-8">
+                    <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-8 border-b pb-2">Analysis: Skill Asset</h3>
+                    <div style="height: 240px;">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2"></div>
+                            <p class="text-xs text-slate-600"><strong class="text-slate-900">構造化 (95):</strong> 複雑な事象を瞬時に図解し、ボトルネックを特定する力。</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2"></div>
+                            <p class="text-xs text-slate-600"><strong class="text-slate-900">修復レジリエンス (90):</strong> 失敗を「知識の源泉」と捉え、再発防止までを完遂する力。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 意思決定の天秤 -->
+                <div class="glass-card p-8 overflow-hidden">
+                    <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-8 border-b pb-2">Priority: Decision Making</h3>
+                    <div class="relative py-12">
+                        <div class="flex flex-col items-center">
+                            <div class="w-full h-1 bg-slate-200 rounded-full relative">
+                                <div class="absolute -left-2 -top-12 bg-slate-50 border border-slate-200 p-3 rounded-xl text-[10px] text-slate-400 w-24 text-center">
+                                    理想のビジョン
+                                </div>
+                                <div class="absolute -right-2 -top-16 bg-blue-600 text-white p-4 rounded-xl shadow-lg w-32 text-center font-bold text-xs">
+                                    現場の「不」の<br>徹底的な解像度
+                                </div>
+                                <div class="absolute left-1/2 -translate-x-1/2 top-0 w-6 h-8 bg-slate-800 rounded-b-xl"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-500 leading-relaxed italic text-center mt-4">
+                        「どこへ行くか」よりも、「今どこが痛んでいるか」に最も誠実でありたい。
+                    </p>
+                </div>
+            </div>
+
+            <!-- メイン：深層心理とプロセス -->
+            <div class="lg:col-span-8 space-y-8">
+                
+                <!-- 近藤未結の「レジリエンス」再定義 -->
+                <div class="glass-card p-10 bg-slate-900 text-white relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-8 opacity-10">
+                        <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.533 1.533 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                        <span class="text-blue-400">#</span> 失敗を「構造の理解」へ昇華させる
+                    </h3>
+                    
+                    <div class="space-y-6 relative z-10">
+                        <p class="text-lg text-slate-300 leading-relaxed">
+                            私にとってのレジリエンスとは、単に立ち直ることではありません。<br>
+                            <span class="text-white font-bold border-b-2 border-blue-500">「自分が壊したものを、自分の手で修復し、二度と壊れない仕組みを構築するまで」</span>を責任の範囲としています。
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                                <h4 class="text-blue-400 font-bold mb-2">なぜ自分で直すのか</h4>
+                                <p class="text-sm text-slate-400">
+                                    他人の修理は「結果」しか見えません。自分で手を動かすことで、設計時の甘さや、予期せぬ変数がどこで噛み合わなかったのか、その「手触り感のある因果関係」が脳に刻まれます。
+                                </p>
+                            </div>
+                            <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                                <h4 class="text-orange-400 font-bold mb-2">修復がもたらす価値</h4>
+                                <p class="text-sm text-slate-400">
+                                    アルミフレームの設計ミスを自ら修正した際、0.1mmの誤差が全体の剛性に与える影響を骨身に染みて理解しました。この「失敗の追体験」が、次の設計の精度を飛躍的に高めます。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 思考のワークフロー：デバッグからルールへ -->
+                <div class="glass-card p-10">
+                    <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-10 border-b pb-2">Execution: From Error to Infrastructure</h3>
+                    
+                    <div class="flex flex-col md:flex-row justify-between gap-12">
+                        <!-- Step 1 -->
+                        <div class="process-dot flex-1 group">
+                            <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            </div>
+                            <h4 class="font-bold text-slate-800 mb-2">1. 違和感の言語化</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">
+                                「なんとなく」を放置しない。不具合の予兆を理論的に特定し、問題をテーブルに載せる。
+                            </p>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="process-dot flex-1 group">
+                            <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                            </div>
+                            <h4 class="font-bold text-slate-800 mb-2">2. 自己完結型修復</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">
+                                逃げずに自ら手を下す。修復過程で「なぜ壊れたか」という構造的な真理を掴み取る。
+                            </p>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="process-dot flex-1 group">
+                            <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04custom m-5.618 4.016c.113 5.311 1.54 10.802 4.032 15.838a.5.5 0 00.906 0c2.492-5.036 3.92-10.527 4.032-15.838z"></path></svg>
+                            </div>
+                            <h4 class="font-bold text-slate-800 mb-2">3. 恒久的インフラ化</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">
+                                個人の反省で終わらせない。誰もが迷わず運用できるルールやテンプレートとして仕組みに還元する。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 結び：面接官へのメッセージ -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="glass-card p-8 bg-blue-50/50 border-blue-100">
+                        <h4 class="text-sm font-black text-blue-600 uppercase tracking-widest mb-4">Interviewer Guide</h4>
+                        <p class="text-sm text-slate-700 leading-relaxed">
+                            面接では、これまでの「失敗」そのものではなく、その後の<strong>「修復プロセスで何を学んだか」</strong>をぜひ深掘りしてください。私の真の価値は、修復を通じて得た「現場の解像度」にあります。
+                        </p>
+                    </div>
+                    <div class="flex flex-col justify-center px-4">
+                        <p class="text-2xl font-black text-slate-900 leading-tight italic">
+                            "仕組みで人を支え、<br>論理で自分を守る。"
+                        </p>
+                        <p class="text-xs text-slate-400 mt-2">— Structural Realist: Miyu Kondo</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- フッター -->
+        <footer class="mt-20 pt-8 border-t border-slate-200 flex justify-between items-center">
+            <span class="text-[10px] text-slate-400 font-bold tracking-widest uppercase">Portfolio 2026 // Private & Confidential</span>
+            <div class="flex gap-4">
+                <div class="w-2 h-2 rounded-full bg-blue-600"></div>
+                <div class="w-2 h-2 rounded-full bg-slate-300"></div>
+                <div class="w-2 h-2 rounded-full bg-slate-300"></div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        const ctxRadar = document.getElementById('radarChart').getContext('2d');
+        
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: ['論理的思考', '構造化能力', '修復レジリエンス', '技術実装', '責任感', '対人調整'],
+                datasets: [{
+                    data: [92, 95, 90, 78, 96, 70],
+                    backgroundColor: 'rgba(37, 99, 235, 0.08)',
+                    borderColor: '#2563EB',
+                    pointBackgroundColor: '#2563EB',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointRadius: 4,
+                    borderWidth: 2,
+                    lineTension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        grid: { color: '#E2E8F0', circular: true },
+                        angleLines: { color: '#E2E8F0' },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { display: false },
+                        pointLabels: {
+                            font: { size: 11, weight: '600', family: 'Noto Sans JP' },
+                            color: '#64748B'
+                        }
+                    }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+    </script>
+</body>
+</html>

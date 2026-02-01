@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miyu Kondo | The Architect of Predictability</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            height: 350px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #e2e8f0;
+            transform: translateX(-50%);
+        }
+        
+        /* Mobile timeline adjustment */
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 20px;
+            }
+        }
+    </style>
+    <!-- Chosen Palette: Structural Blue (Trust, Logic, Calm) -->
+    <!-- Application Structure Plan: A single-page dashboard designed to visualize the candidate's 'Operating System'. 
+         Sections flow from Abstract Identity -> Chronological Evolution -> Concrete Skills -> Future Vision.
+         This mirrors the candidate's strength in 'Structuring Chaos'. -->
+    <!-- Visualization & Content Choices: 
+         1. Radar Chart: To visualize the balance of 'Hard Skills' (Tech) and 'Soft Skills' (Ownership).
+         2. Interactive Timeline: To show the causality between past trauma/experiences and current strengths.
+         3. Dynamic Cards: To detail the specific value proposition for target industries (Logistics/Finance). 
+         CONFIRMATION: NO SVG graphics used (Lucide icons via CDN script). NO Mermaid JS used. -->
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="box" class="w-6 h-6 text-blue-600"></i>
+                    <span class="font-bold text-xl tracking-tight text-slate-900">Miyu Kondo</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-slate-500 hover:text-blue-600 font-medium transition-colors">Identity</a>
+                    <a href="#history" class="text-slate-500 hover:text-blue-600 font-medium transition-colors">History</a>
+                    <a href="#skills" class="text-slate-500 hover:text-blue-600 font-medium transition-colors">Capabilities</a>
+                    <a href="#vision" class="text-slate-500 hover:text-blue-600 font-medium transition-colors">Vision</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-500 hover:text-slate-700">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-blue-600">Identity</a>
+                <a href="#history" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-blue-600">History</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-blue-600">Capabilities</a>
+                <a href="#vision" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-blue-600">Vision</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="about" class="relative overflow-hidden bg-white pt-16 pb-20 lg:pt-24 lg:pb-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center">
+                <div class="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-sm font-semibold text-blue-600 ring-1 ring-inset ring-blue-600/20 mb-6">
+                    Looking for "Predictable Infrastructure"
+                </div>
+                <h1 class="text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl mb-6">
+                    カオスを構造化する<br class="hidden sm:block" />
+                    <span class="text-blue-600">アーキテクト</span>
+                </h1>
+                <p class="mx-auto mt-4 max-w-2xl text-lg leading-8 text-slate-600">
+                    「不確実なカオス」を、論理と技術で「予測可能な秩序」へ。<br>
+                    私の役割は、現場の泥臭い課題に責任を持ち、<br>
+                    誰もが安心して挑戦できる仕組みを完遂することです。
+                </p>
+                <div class="mt-10 flex items-center justify-center gap-x-6">
+                    <a href="#history" class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-all">
+                        ルーツを見る
+                    </a>
+                    <a href="#skills" class="text-sm font-semibold leading-6 text-slate-900 flex items-center gap-1 group">
+                        能力を見る <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Background Decor -->
+        <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+            <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#3b82f6] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
+    </header>
+
+    <!-- History Section (Timeline) -->
+    <section id="history" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Origin Story</h2>
+                <p class="mt-4 text-lg text-slate-600">「責任」と「仕組み化」への執着は、どこから生まれたのか。</p>
+            </div>
+
+            <div class="relative max-w-4xl mx-auto">
+                <div class="timeline-line"></div>
+
+                <!-- Item 1: Childhood -->
+                <div class="relative z-10 mb-12 md:grid md:grid-cols-2 md:gap-8 items-center group">
+                    <div class="md:text-right mb-4 md:mb-0 pr-0 md:pr-8">
+                        <div class="inline-block p-3 rounded-lg bg-white shadow-md border border-slate-100 card-hover w-full md:w-auto">
+                            <span class="text-blue-600 font-bold block mb-1">幼少期 〜 中学</span>
+                            <h3 class="text-lg font-bold text-slate-800">生存戦略としての「演劇」</h3>
+                            <p class="text-slate-600 text-sm mt-2">
+                                理不尽なルール（祖父や顧問）への対抗策として、相手の期待を完璧にシミュレーションする「防衛的メタ認知」を獲得。<br>
+                                「怒られないために、全体を把握する」という癖がつく。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center hidden md:flex">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 border-4 border-white flex items-center justify-center">
+                            <div class="w-3 h-3 rounded-full bg-blue-600"></div>
+                        </div>
+                    </div>
+                    <div class="md:hidden absolute left-[20px] top-4 transform -translate-x-1/2 flex items-center justify-center">
+                        <div class="w-6 h-6 rounded-full bg-blue-100 border-2 border-white flex items-center justify-center">
+                            <div class="w-2 h-2 rounded-full bg-blue-600"></div>
+                        </div>
+                    </div>
+                    <div class="pl-8 md:pl-0"></div> <!-- Spacer -->
+                </div>
+
+                <!-- Item 2: High School/Univ -->
+                <div class="relative z-10 mb-12 md:grid md:grid-cols-2 md:gap-8 items-center group">
+                    <div class="hidden md:block"></div> <!-- Spacer -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center hidden md:flex">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 border-4 border-white flex items-center justify-center">
+                            <div class="w-3 h-3 rounded-full bg-blue-600"></div>
+                        </div>
+                    </div>
+                    <div class="md:hidden absolute left-[20px] top-4 transform -translate-x-1/2 flex items-center justify-center">
+                        <div class="w-6 h-6 rounded-full bg-blue-100 border-2 border-white flex items-center justify-center">
+                            <div class="w-2 h-2 rounded-full bg-blue-600"></div>
+                        </div>
+                    </div>
+                    <div class="md:text-left pl-0 md:pl-8">
+                        <div class="inline-block p-3 rounded-lg bg-white shadow-md border border-slate-100 card-hover w-full md:w-auto">
+                            <span class="text-blue-600 font-bold block mb-1">高校 〜 大学（サークル）</span>
+                            <h3 class="text-lg font-bold text-slate-800">カオスの洗礼と構造化への目覚め</h3>
+                            <p class="text-slate-600 text-sm mt-2">
+                                新規エリア（森）の開拓リーダーを担当。「野生動物出現」という予測不能な失敗に直面。<br>
+                                「個人の根性では不確実性に勝てない」と痛感し、属人性を排した「仕組み」への執着が生まれる。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3: Current -->
+                <div class="relative z-10 md:grid md:grid-cols-2 md:gap-8 items-center group">
+                    <div class="md:text-right mb-4 md:mb-0 pr-0 md:pr-8">
+                        <div class="inline-block p-3 rounded-lg bg-white shadow-md border border-slate-100 card-hover w-full md:w-auto ring-2 ring-blue-100">
+                            <span class="text-blue-600 font-bold block mb-1">現在（岩手大学・就活）</span>
+                            <h3 class="text-lg font-bold text-slate-800">「物理×情報」のハックと完遂</h3>
+                            <p class="text-slate-600 text-sm mt-2">
+                                アルミフレーム工作やCAD API自作を通じ、「物理的な因果関係」と「コードの論理」を融合。<br>
+                                「失敗しても自分でリカバーできる」技術力を武器に、社会インフラ（物流・金融）への実装を目指す。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center hidden md:flex">
+                        <div class="w-8 h-8 rounded-full bg-blue-600 border-4 border-white flex items-center justify-center">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                    </div>
+                    <div class="md:hidden absolute left-[20px] top-4 transform -translate-x-1/2 flex items-center justify-center">
+                        <div class="w-6 h-6 rounded-full bg-blue-600 border-2 border-white flex items-center justify-center">
+                            <div class="w-2 h-2 rounded-full bg-white"></div>
+                        </div>
+                    </div>
+                    <div class="pl-8 md:pl-0"></div> <!-- Spacer -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Capabilities Section (Interactive Data) -->
+    <section id="skills" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900">Capabilities & DNA</h2>
+                <p class="mt-4 text-lg text-slate-600">私の強みを構成する要素と、そのバランス。</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Chart Container -->
+                <div class="bg-slate-50 rounded-2xl p-6 shadow-inner">
+                    <h3 class="text-lg font-semibold text-center mb-4 text-slate-700">Competency Radar</h3>
+                    <div class="chart-container">
+                        <canvas id="skillsChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-center text-sm text-slate-500">
+                        ※相対評価による自己分析結果（市場上位数%基準）
+                    </div>
+                </div>
+
+                <!-- Textual Analysis -->
+                <div class="space-y-8">
+                    <!-- Feature 1 -->
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600 text-white">
+                                <i data-lucide="brain-circuit" class="w-6 h-6"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">論理的安堵感の追求 (Precision)</h3>
+                            <p class="mt-2 text-slate-600">
+                                自分が書いたコードや設計が、物理的な因果関係通りに動く瞬間に最大の喜びを感じます。
+                                曖昧さを排除し、誰もが同じ結果を出せる「確かな正解」を導き出す技術的素養があります。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-600 text-white">
+                                <i data-lucide="shield-check" class="w-6 h-6"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">カオスの統治権 (Governance)</h3>
+                            <p class="mt-2 text-slate-600">
+                                「誰かのミスで自分が怒られる」ことを極端に嫌うからこそ、全体像を把握し、
+                                ボトルネックを自ら引き受けることで、プロジェクトのリスクを制御下に置きます。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-teal-600 text-white">
+                                <i data-lucide="wrench" class="w-6 h-6"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">リカバー力 (Resilience)</h3>
+                            <p class="mt-2 text-slate-600">
+                                設計ミスや不測の事態（クマの出現など）が起きても、手持ちのリソース（アルミフレームや人材）を
+                                即座に組み替え、泥臭く成功まで持っていく粘り強さを持っています。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision / Target Section -->
+    <section id="vision" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold tracking-tight">Mission & Target Domain</h2>
+                <p class="mt-4 text-lg text-slate-300">「自分への許し」を得るために、社会を仕組みで救う。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-slate-800 rounded-xl p-8 border border-slate-700 hover:border-blue-500 transition-colors">
+                    <div class="w-12 h-12 bg-blue-900/50 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="truck" class="w-6 h-6 text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Logistics DX (物流)</h3>
+                    <p class="text-slate-400 mb-4">
+                        物理的な制約とアナログな慣習が残る、最も「不確実性」が高い領域。
+                    </p>
+                    <div class="text-sm font-semibold text-blue-400">
+                        Why Match: <span class="text-slate-300 font-normal">物理ハックへの興味と、現場のカオスを整理したい欲求が合致。</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-slate-800 rounded-xl p-8 border border-slate-700 hover:border-indigo-500 transition-colors">
+                    <div class="w-12 h-12 bg-indigo-900/50 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="credit-card" class="w-6 h-6 text-indigo-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Fintech (金融)</h3>
+                    <p class="text-slate-400 mb-4">
+                        1円のズレも許されない、極限の「論理的整合性」が求められるインフラ。
+                    </p>
+                    <div class="text-sm font-semibold text-indigo-400">
+                        Why Match: <span class="text-slate-300 font-normal">「絶対に失敗しない仕組み」を作りたい完璧主義と責任感が活きる。</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-slate-800 rounded-xl p-8 border border-slate-700 hover:border-teal-500 transition-colors">
+                    <div class="w-12 h-12 bg-teal-900/50 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="building-2" class="w-6 h-6 text-teal-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Social Structure (公共)</h3>
+                    <p class="text-slate-400 mb-4">
+                        民間での実装経験を経て、将来的には国レベルの制度設計へ。
+                    </p>
+                    <div class="text-sm font-semibold text-teal-400">
+                        Why Match: <span class="text-slate-300 font-normal">「誰一人取り残さない仕組み」を作ることで、過去の自分を救いたい。</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center border-t border-slate-700 pt-8">
+                <p class="text-slate-400 italic">
+                    "My pride exists solely to ensure that the project is never left to chance."
+                </p>
+                <p class="mt-2 text-slate-500 text-sm">- Miyu Kondo</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-8 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 text-center text-slate-500 text-sm">
+            <p>&copy; 2026 Miyu Kondo. All rights reserved.</p>
+            <p class="mt-1">Designed with Logic & Ownership.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Logic Script -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Chart.js Visualization
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            
+            // Data derived from self-analysis
+            const data = {
+                labels: [
+                    '論理的思考力 (Logic)', 
+                    '構造化能力 (Structuring)', 
+                    'リカバー力 (Recovery)', 
+                    '技術的実装力 (Tech)', 
+                    '当事者意識 (Ownership)', 
+                    '感情の言語化 (Verbalization)'
+                ],
+                datasets: [{
+                    label: 'Current Capability',
+                    data: [90, 95, 90, 75, 95, 50], // Based on self-analysis: High Logic/Ownership, Low Verbalization of emotion
+                    fill: true,
+                    backgroundColor: 'rgba(37, 99, 235, 0.2)', // Blue-600 with opacity
+                    borderColor: 'rgb(37, 99, 235)',
+                    pointBackgroundColor: 'rgb(37, 99, 235)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(37, 99, 235)'
+                }]
+            };
+
+            const config = {
+                type: 'radar',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    elements: {
+                        line: {
+                            borderWidth: 3
+                        }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true,
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            ticks: {
+                                stepSize: 20,
+                                backdropColor: 'transparent'
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 12,
+                                    family: "'Inter', sans-serif",
+                                    weight: '600'
+                                },
+                                color: '#475569'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.r !== null) {
+                                        label += context.parsed.r + '%';
+                                    }
+                                    return label;
+                                },
+                                afterLabel: function(context) {
+                                    // Add specific context based on the label
+                                    const index = context.dataIndex;
+                                    const details = [
+                                        "Speee技術面談突破レベル。複雑な事象を瞬時に分解する。",
+                                        "カオスな現場（大会運営）を整理し、ルール化した実績。",
+                                        "設計ミスやトラブルに対し、手持ちのリソースで即座に対応する。",
+                                        "CAD API自作やCS基礎。道具として技術を使いこなす。",
+                                        "「失敗の予測可能性」への執着。責任を他人に委ねない。",
+                                        "論理的整合性を優先するため、瞬発的な感情表現は課題。"
+                                    ];
+                                    return details[index];
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            new Chart(ctx, config);
+        });
+
+        // Simple interaction for Timeline items to show detail on click (optional enhancement)
+        const timelineItems = document.querySelectorAll('#history .group');
+        timelineItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Future implementation: Expand to show specific episodes like "The Bear Incident"
+                console.log('Timeline item clicked');
+            });
+        });
+    </script>
+</body>
+</html>
