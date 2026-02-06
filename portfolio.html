@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miyu Kondo | The Architect of Predictability</title>
+    <title>近藤未悠 — 予測可能性のアーキテクト</title>
+    <meta name="description" content="不確実性を論理と技術で予測可能にするアーキテクト。物流・金融・公共領域でのインフラ設計・実装を志向します。">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
@@ -75,6 +76,7 @@
          CONFIRMATION: NO SVG graphics used (Lucide icons via CDN script). NO Mermaid JS used. -->
 </head>
 <body class="bg-slate-50 text-slate-800">
+    <a href="#main" class="sr-only focus:not-sr-only inline-block px-4 py-2 text-sm bg-white text-slate-700">コンテンツへ移動</a>
 
     <!-- Navigation -->
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
@@ -82,16 +84,16 @@
             <div class="flex justify-between h-16 items-center">
                 <div class="flex items-center gap-2">
                     <i data-lucide="box" class="w-6 h-6 text-blue-600"></i>
-                    <span class="font-bold text-xl tracking-tight text-slate-900">Miyu Kondo</span>
+                    <span class="font-bold text-xl tracking-tight text-slate-900">近藤未悠</span>
                 </div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-slate-500 hover:text-blue-600 font-medium transition-colors">Identity</a>
-                    <a href="#history" class="text-slate-500 hover:text-blue-600 font-medium transition-colors">History</a>
-                    <a href="#skills" class="text-slate-500 hover:text-blue-600 font-medium transition-colors">Capabilities</a>
-                    <a href="#vision" class="text-slate-500 hover:text-blue-600 font-medium transition-colors">Vision</a>
+                    <a href="#about" class="text-slate-500 hover:text-blue-600 font-medium transition-colors">プロフィール</a>
+                    <a href="#history" class="text-slate-500 hover:text-blue-600 font-medium transition-colors">沿革</a>
+                    <a href="#skills" class="text-slate-500 hover:text-blue-600 font-medium transition-colors">能力</a>
+                    <a href="#vision" class="text-slate-500 hover:text-blue-600 font-medium transition-colors">ビジョン</a>
                 </div>
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden text-slate-500 hover:text-slate-700">
+                <button id="mobile-menu-btn" class="md:hidden text-slate-500 hover:text-slate-700" aria-controls="mobile-menu" aria-expanded="false" aria-label="メニュー">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
             </div>
@@ -99,33 +101,33 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100">
             <div class="px-4 pt-2 pb-4 space-y-1">
-                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-blue-600">Identity</a>
-                <a href="#history" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-blue-600">History</a>
-                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-blue-600">Capabilities</a>
-                <a href="#vision" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-blue-600">Vision</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-blue-600">プロフィール</a>
+                <a href="#history" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-blue-600">沿革</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-blue-600">能力</a>
+                <a href="#vision" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-blue-600">ビジョン</a>
             </div>
         </div>
     </nav>
 
+    <main id="main">
     <!-- Hero Section -->
     <header id="about" class="relative overflow-hidden bg-white pt-16 pb-20 lg:pt-24 lg:pb-28">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center">
                 <div class="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-sm font-semibold text-blue-600 ring-1 ring-inset ring-blue-600/20 mb-6">
-                    Looking for "Predictable Infrastructure"
+                    「予測可能なインフラ」の構築を目指しています
                 </div>
                 <h1 class="text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl mb-6">
                     カオスを構造化する<br class="hidden sm:block" />
                     <span class="text-blue-600">アーキテクト</span>
                 </h1>
                 <p class="mx-auto mt-4 max-w-2xl text-lg leading-8 text-slate-600">
-                    「不確実なカオス」を、論理と技術で「予測可能な秩序」へ。<br>
-                    私の役割は、現場の泥臭い課題に責任を持ち、<br>
-                    誰もが安心して挑戦できる仕組みを完遂することです。
+                    不確実性の高い現場に対して、論理と技術で予測可能な秩序を設計・実装します。<br>
+                    現場の課題を責任を持って解決し、誰もが安心して挑戦できる仕組みを提供することを使命としています。
                 </p>
                 <div class="mt-10 flex items-center justify-center gap-x-6">
                     <a href="#history" class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-all">
-                        ルーツを見る
+                        沿革を見る
                     </a>
                     <a href="#skills" class="text-sm font-semibold leading-6 text-slate-900 flex items-center gap-1 group">
                         能力を見る <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
@@ -143,7 +145,7 @@
     <section id="history" class="py-20 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Origin Story</h2>
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">ルーツ</h2>
                 <p class="mt-4 text-lg text-slate-600">「責任」と「仕組み化」への執着は、どこから生まれたのか。</p>
             </div>
 
@@ -157,8 +159,7 @@
                             <span class="text-blue-600 font-bold block mb-1">幼少期 〜 中学</span>
                             <h3 class="text-lg font-bold text-slate-800">生存戦略としての「演劇」</h3>
                             <p class="text-slate-600 text-sm mt-2">
-                                理不尽なルール（祖父や顧問）への対抗策として、相手の期待を完璧にシミュレーションする「防衛的メタ認知」を獲得。<br>
-                                「怒られないために、全体を把握する」という癖がつく。
+                                小学2年生頃から学級委員を務め、目立たないが責任を果たす役割を続けました。中学校でパートリーダーを務めた際、教員に「それはあなたの感想で、皆がやるべきことか」と問われ、チーム全体を優先する意思決定の視点の重要性に気づきました。これが「チームを自分ごととして捉える」姿勢の原体験です。
                             </p>
                         </div>
                     </div>
@@ -207,7 +208,8 @@
                             <span class="text-blue-600 font-bold block mb-1">現在（岩手大学・就活）</span>
                             <h3 class="text-lg font-bold text-slate-800">「物理×情報」のハックと完遂</h3>
                             <p class="text-slate-600 text-sm mt-2">
-                                アルミフレーム工作やCAD API自作を通じ、「物理的な因果関係」と「コードの論理」を融合。<br>
+                                アルミフレーム工作やCAD API自作を通じ、「物理的な因果関係」と「コードの論理」を融合。大学ではSmart Vineyardプロジェクトを通じて実機設計・検証を行い、学内での主要な成果を上げました。<br>
+                                また、サークルの大会運営で作成したExcelのタスク管理表が形骸化した経験から、導入の持続可能性と属人化の課題を深く認識しています。<br>
                                 「失敗しても自分でリカバーできる」技術力を武器に、社会インフラ（物流・金融）への実装を目指す。
                             </p>
                         </div>
@@ -232,19 +234,19 @@
     <section id="skills" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold tracking-tight text-slate-900">Capabilities & DNA</h2>
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900">能力と特性</h2>
                 <p class="mt-4 text-lg text-slate-600">私の強みを構成する要素と、そのバランス。</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <!-- Chart Container -->
                 <div class="bg-slate-50 rounded-2xl p-6 shadow-inner">
-                    <h3 class="text-lg font-semibold text-center mb-4 text-slate-700">Competency Radar</h3>
+                    <h3 class="text-lg font-semibold text-center mb-4 text-slate-700">能力レーダー</h3>
                     <div class="chart-container">
                         <canvas id="skillsChart"></canvas>
                     </div>
                     <div class="mt-4 text-center text-sm text-slate-500">
-                        ※相対評価による自己分析結果（市場上位数%基準）
+                        ※自己評価（相対）による目安です
                     </div>
                 </div>
 
@@ -258,7 +260,7 @@
                             </div>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-slate-900">論理的安堵感の追求 (Precision)</h3>
+                            <h3 class="text-xl font-bold text-slate-900">論理的整合性の追求（精度）</h3>
                             <p class="mt-2 text-slate-600">
                                 自分が書いたコードや設計が、物理的な因果関係通りに動く瞬間に最大の喜びを感じます。
                                 曖昧さを排除し、誰もが同じ結果を出せる「確かな正解」を導き出す技術的素養があります。
@@ -274,7 +276,7 @@
                             </div>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-slate-900">カオスの統治権 (Governance)</h3>
+                            <h3 class="text-xl font-bold text-slate-900">カオスの統治（統制力）</h3>
                             <p class="mt-2 text-slate-600">
                                 「誰かのミスで自分が怒られる」ことを極端に嫌うからこそ、全体像を把握し、
                                 ボトルネックを自ら引き受けることで、プロジェクトのリスクを制御下に置きます。
@@ -290,7 +292,7 @@
                             </div>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-slate-900">リカバー力 (Resilience)</h3>
+                            <h3 class="text-xl font-bold text-slate-900">回復力（レジリエンス）</h3>
                             <p class="mt-2 text-slate-600">
                                 設計ミスや不測の事態（クマの出現など）が起きても、手持ちのリソース（アルミフレームや人材）を
                                 即座に組み替え、泥臭く成功まで持っていく粘り強さを持っています。
@@ -306,8 +308,8 @@
     <section id="vision" class="py-20 bg-slate-900 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold tracking-tight">Mission & Target Domain</h2>
-                <p class="mt-4 text-lg text-slate-300">「自分への許し」を得るために、社会を仕組みで救う。</p>
+                <h2 class="text-3xl font-bold tracking-tight">ミッションとターゲット領域</h2>
+                <p class="mt-4 text-lg text-slate-300">過去の自分を救うために、社会の仕組みを改善します。</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -316,12 +318,12 @@
                     <div class="w-12 h-12 bg-blue-900/50 rounded-lg flex items-center justify-center mb-6">
                         <i data-lucide="truck" class="w-6 h-6 text-blue-400"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Logistics DX (物流)</h3>
+                    <h3 class="text-xl font-bold mb-4">物流DX</h3>
                     <p class="text-slate-400 mb-4">
-                        物理的な制約とアナログな慣習が残る、最も「不確実性」が高い領域。
+                        物理的な制約とアナログな慣習が残る、最も不確実性の高い領域です。
                     </p>
                     <div class="text-sm font-semibold text-blue-400">
-                        Why Match: <span class="text-slate-300 font-normal">物理ハックへの興味と、現場のカオスを整理したい欲求が合致。</span>
+                        適合理由：<span class="text-slate-300 font-normal">物理的なハック志向と、現場の混乱を整理したいという志向が一致します。</span>
                     </div>
                 </div>
 
@@ -330,12 +332,12 @@
                     <div class="w-12 h-12 bg-indigo-900/50 rounded-lg flex items-center justify-center mb-6">
                         <i data-lucide="credit-card" class="w-6 h-6 text-indigo-400"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Fintech (金融)</h3>
+                    <h3 class="text-xl font-bold mb-4">Fintech（金融）</h3>
                     <p class="text-slate-400 mb-4">
-                        1円のズレも許されない、極限の「論理的整合性」が求められるインフラ。
+                        1円のズレも許されない、極めて高い論理的整合性が求められる領域です。
                     </p>
                     <div class="text-sm font-semibold text-indigo-400">
-                        Why Match: <span class="text-slate-300 font-normal">「絶対に失敗しない仕組み」を作りたい完璧主義と責任感が活きる。</span>
+                        適合理由：<span class="text-slate-300 font-normal">絶対に失敗しない仕組みを作るという責任感と適合します。</span>
                     </div>
                 </div>
 
@@ -344,21 +346,21 @@
                     <div class="w-12 h-12 bg-teal-900/50 rounded-lg flex items-center justify-center mb-6">
                         <i data-lucide="building-2" class="w-6 h-6 text-teal-400"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Social Structure (公共)</h3>
+                    <h3 class="text-xl font-bold mb-4">社会インフラ（公共）</h3>
                     <p class="text-slate-400 mb-4">
-                        民間での実装経験を経て、将来的には国レベルの制度設計へ。
+                        民間での実装経験を土台に、将来的には制度設計レベルでの改善を目指します。
                     </p>
                     <div class="text-sm font-semibold text-teal-400">
-                        Why Match: <span class="text-slate-300 font-normal">「誰一人取り残さない仕組み」を作ることで、過去の自分を救いたい。</span>
+                        適合理由：<span class="text-slate-300 font-normal">誰一人取り残さない仕組みを作ることで社会的なインパクトを目指しています。</span>
                     </div>
                 </div>
             </div>
 
             <div class="mt-16 text-center border-t border-slate-700 pt-8">
                 <p class="text-slate-400 italic">
-                    "My pride exists solely to ensure that the project is never left to chance."
+                    「私の誇りは、プロジェクトを決して運任せにしないためにあります。」
                 </p>
-                <p class="mt-2 text-slate-500 text-sm">- Miyu Kondo</p>
+                <p class="mt-2 text-slate-500 text-sm">- 近藤未悠</p>
             </div>
         </div>
     </section>
@@ -366,8 +368,8 @@
     <!-- Footer -->
     <footer class="bg-white py-8 border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-4 text-center text-slate-500 text-sm">
-            <p>&copy; 2026 Miyu Kondo. All rights reserved.</p>
-            <p class="mt-1">Designed with Logic & Ownership.</p>
+            <p>&copy; <span id="year">2026</span> 近藤未悠。無断転載を禁じます。</p>
+            <p class="mt-1">論理と責任をもって設計・実装します。</p>
         </div>
     </footer>
 
@@ -376,11 +378,13 @@
         // Initialize Lucide Icons
         lucide.createIcons();
 
-        // Mobile Menu Toggle
+        // Mobile Menu Toggle (アクセシビリティ対応)
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
 
         btn.addEventListener('click', () => {
+            const expanded = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', (!expanded).toString());
             menu.classList.toggle('hidden');
         });
 
@@ -391,18 +395,18 @@
             // Data derived from self-analysis
             const data = {
                 labels: [
-                    '論理的思考力 (Logic)', 
-                    '構造化能力 (Structuring)', 
-                    'リカバー力 (Recovery)', 
-                    '技術的実装力 (Tech)', 
-                    '当事者意識 (Ownership)', 
-                    '感情の言語化 (Verbalization)'
+                    '論理的思考', 
+                    '構造化能力', 
+                    'リカバー力', 
+                    '技術的実装力', 
+                    '当事者意識', 
+                    '感情の言語化'
                 ],
                 datasets: [{
-                    label: 'Current Capability',
-                    data: [90, 95, 90, 75, 95, 50], // Based on self-analysis: High Logic/Ownership, Low Verbalization of emotion
+                    label: '現在の能力（自己評価）',
+                    data: [90, 95, 90, 75, 95, 50],
                     fill: true,
-                    backgroundColor: 'rgba(37, 99, 235, 0.2)', // Blue-600 with opacity
+                    backgroundColor: 'rgba(37, 99, 235, 0.2)',
                     borderColor: 'rgb(37, 99, 235)',
                     pointBackgroundColor: 'rgb(37, 99, 235)',
                     pointBorderColor: '#fff',
@@ -464,12 +468,12 @@
                                     // Add specific context based on the label
                                     const index = context.dataIndex;
                                     const details = [
-                                        "Speee技術面談突破レベル。複雑な事象を瞬時に分解する。",
-                                        "カオスな現場（大会運営）を整理し、ルール化した実績。",
-                                        "設計ミスやトラブルに対し、手持ちのリソースで即座に対応する。",
-                                        "CAD API自作やCS基礎。道具として技術を使いこなす。",
-                                        "「失敗の予測可能性」への執着。責任を他人に委ねない。",
-                                        "論理的整合性を優先するため、瞬発的な感情表現は課題。"
+                                        "複雑な事象を迅速に分解・整理し、解決策を提示できます。",
+                                        "予測不可能な状況を属人化せず、仕組みとして整理した実績があります。",
+                                        "設計ミスや想定外の障害に対し、手持ちの資源で迅速に復旧できます。",
+                                        "CADやAPI開発等での実装経験があり、技術的落とし込みが得意です。",
+                                        "プロジェクトに対する強い当事者意識を持ち、責任を負います。",
+                                        "感情表現を論理化することが課題であり、改善を継続しています。"
                                     ];
                                     return details[index];
                                 }
@@ -490,6 +494,12 @@
                 console.log('Timeline item clicked');
             });
         });
+
+        // 動的年表示
+        const yearEl = document.getElementById('year');
+        if (yearEl) {
+            yearEl.textContent = new Date().getFullYear();
+        }
     </script>
 </body>
 </html>
